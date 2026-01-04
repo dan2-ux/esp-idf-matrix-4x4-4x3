@@ -2,11 +2,14 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+// enter the 4 gpio for row into the struct bellow
 struct matrixGPIOr row =
     {
         .gpio = {GPIO_NUM_13, GPIO_NUM_12, GPIO_NUM_14, GPIO_NUM_27},
         .mode = GPIO_MODE_INPUT,
 };
+
+// enter the 4 gpio for col into the struct bellow
 struct matrixGPIOc col =
     {
         .gpio = {GPIO_NUM_26, GPIO_NUM_25, GPIO_NUM_33, GPIO_NUM_32},
