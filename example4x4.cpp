@@ -1,35 +1,34 @@
-#pragma once
-
-#include "driver/gpio.h"
+#include "setup.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-extern QueueHandle_t kkk3;
-extern TimerHandle_t timer3;
-
-const char fourByThree[4][3] = {
-    {'1', '2', '3'},
-    {'4', '5', '6'},
-    {'7', '8', '9'},
-    {'*', '0', '#'},
+struct matrixGPIOr row =
+    {
+        .gpio = {GPIO_NUM_13, GPIO_NUM_12, GPIO_NUM_14, GPIO_NUM_27},
+        .mode = GPIO_MODE_INPUT,
+};
+struct matrixGPIOc col =
+    {
+        .gpio = {GPIO_NUM_26, GPIO_NUM_25, GPIO_NUM_33, GPIO_NUM_32},
+        .mode = GPIO_MODE_OUTPUT,
 };
 
-struct buzzerGPIO3
+struct buzzerGPIO buzzer =
+    {
+        .pin = GPIO_NUM_4};
+
+void printOutMatrix(void *arg)
 {
-    gpio_num_t pin;
-};
+    while (1)
+    {
+        displayMATRIX(&row, &col, &buzzer);
+        vTaskDelay(pdMS_TO_TICKS(100));
+    }
+}
 
-struct matrixGPIOr3
+extern "C" void app_main()
 {
-    gpio_num_t gpio[4];
-    gpio_mode_t mode;
-};
-struct matrixGPIOc3
-{
-    gpio_num_t gpio[4];
-    gpio_mode_t mode;
-};
+    setupMATRIXGPIO(&row, &col, &buzzer);
 
-void setupMATRIXGPIO3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC, buzzerGPIO3 *buzzer);
-void getMATRIX3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC);
-void displayMATRIX3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC, buzzerGPIO3 *buzzer);
+    xTaskCreatePinnedToCore(printOutMatrix, "print out the pressing matrix value", 2048, NULL, 5, NULL, 1);
+}
