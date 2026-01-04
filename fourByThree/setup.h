@@ -5,12 +5,18 @@
 #include "freertos/task.h"
 
 extern QueueHandle_t kkk3;
+extern TimerHandle_t timer3;
 
 const char fourByThree[4][3] = {
     {'1', '2', '3'},
     {'4', '5', '6'},
     {'7', '8', '9'},
     {'*', '0', '#'},
+};
+
+struct buzzerGPIO3
+{
+    gpio_num_t pin;
 };
 
 struct matrixGPIOr3
@@ -24,6 +30,6 @@ struct matrixGPIOc3
     gpio_mode_t mode;
 };
 
-void setupMATRIXGPIO3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC);
+void setupMATRIXGPIO3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC, buzzerGPIO3 *buzzer);
 void getMATRIX3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC);
-void displayMATRIX3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC);
+void displayMATRIX3(matrixGPIOr3 *pinR, matrixGPIOc3 *pinC, buzzerGPIO3 *buzzer);
