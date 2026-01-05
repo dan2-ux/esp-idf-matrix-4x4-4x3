@@ -5,7 +5,7 @@ This repository demonstrates how to interface 4×4 and 4×3 matrix keypads using
 <img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/1f44bff0-a721-4c2b-82a2-dede5bc1b339" />
 
 ## What problem does this solve?
-Ready to use components only require developers to define pin.
+Ready to use components and clean API only require developers to define pin.
 
 ## How It Works
 
