@@ -1,4 +1,7 @@
-# Matrix Keypad (4×4 and 4×3)
+# Welcome to Matrix repository
+This is a ready-to-use component with a clean API that only requires developers to define the pins. It is designed for the ESP32 to work with the touch pad, allowing developers to focus on integrating the features provided by the Matrix touch pad into their own projects.
+
+## Matrix Keypad (4×4 and 4×3)
 
 This repository demonstrates how to interface 4×4 and 4×3 matrix keypads using a row–column scanning method.
 
